@@ -1,0 +1,67 @@
+"""
+full_images = []
+full_names = []
+Liste_fehlender = ["F01_202w2.TIF" , "F01_204w2.TIF" , "F01_589w2.TIF" , "F02_321w2.TIF" ,
+                   "F02_1211w2.TIF", "F02_1214w2.TIF", "F02_1088w2.TIF", "F02_1387w2.TIF",
+                   "F02_1388w2.TIF", "F02_1119w2.TIF",
+                   "F03_44w2.TIF"  , "F03_256w2.TIF" , "F03_644w2.TIF" , "F03_812w2.TIF" ,
+                   "F03_815w2.TIF" , "F03_942w2.TIF" ,
+                   "F03_976w2.TIF" , "F03_1093w2.TIF", "F03_1107w2.TIF", "F03_1125w2.TIF",
+                   "F03_1299w2.TIF", "F03_1429w2.TIF", "F03_1461w2.TIF", "F03_1472w2.TIF",
+                   "F03_69w2.TIF"  , "F03_208w2.TIF" ,
+                   "F04_1056w2.TIF", "F04_1104w2.TIF", "F04_1209w2.TIF", "F04_1273w2.TIF",
+                   "F04_208w2.TIF" , "F04_343w2.TIF" , "F04_484w2.TIF" , "F04_489w2.TIF" ,
+                   "F04_585w2.TIF" , "F04_706w2.TIF" , "F04_69w2.TIF"  , "F04_812w2.TIF" ,
+                   "F04_821w2.TIF" , "F04_815w2.TIF" ,
+                   "F02_696_GT_03.tif", "F04_342_GT_03.tif"]
+
+for filename in os.listdir('img_full'):
+    if filename in Liste_fehlender:
+        pass
+    else:
+        full_images.append( dlm( img.imread(  os.path.join('img_full', filename)  ), (2,2) )  )
+        full_names.append(filename)
+      
+        
+seg_images = []
+seg_names = []
+
+for filename in os.listdir('img_seg'):
+    if filename in Liste_fehlender:
+        pass
+    else:
+       seg_images.append(  img.imread(  os.path.join('img_seg', filename))[:,:,0]   )
+        seg_names.append(filename)
+"""
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+
+"""
+  Input           c1                                              c1+u2           c5          output
+520x696x1 --> 520x696x8                   -->                  520x696x16 --> 520x696x8 --> 520x696x1
+
+                   V                                                /\
+                   
+                   p1           c2                  c2+u1           c4
+              260x348x8 --> 260x348x16    -->    260x348x32 --> 260x348x8
+              
+                                  V                  /\
+                                  
+                                  p2                 c3
+                             130x174x16   -->    130x174x16
+
+                             
+Input --> c1          -->         c1+u2 --> c5 --> output
+           V                        /\
+           p1 --> c2  --> c2+u1 --> c4
+                   V       /\
+                   p2 -->  c3
+                             
+"""
+
+
+
+
